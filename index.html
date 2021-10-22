@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Vue | Treinando </title>
+  <script src="vue.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="images/vue.png">
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <h1> Treinando Vue </h1>
+      <nav>
+        <a href="" @click.prevent> Valor {{valorCursos | converterNumero}} </a>
+        <a href="" @click.prevent> Carrinho {{itensCarrinho.length}} </a>
+        <a href="" @click.prevent="carrinhoAtivo = true"> Ver carrinho </a>
+      </nav>
+    </header>
+
+    <div v-for="curso in cursos" :key="curso.id" class="cursos">
+      <div>
+        <h2> {{curso.nome}} </h2>
+        <p> {{curso.tempo}} - {{curso.preco | converterNumero}}</p>
+        <button @click="adicionarCurso(curso.id, curso.nome)"> Adicionar ao carrinho </button>
+      </div>
+    </div>
+
+    <div class="modal" :class="{ativo: carrinhoAtivo}">
+      <div class="modal_container">
+        <h2> Carrinho </h2>
+        <button @click="carrinhoAtivo = false" class="modal_fechar"> X </button>
+        <div v-if="itensCarrinho.length > 0">
+          <ul v-for="(item, index) in itensCarrinho">
+            <li>
+              <p class="modal_nome"> {{item.nome}} </p>
+              <span>
+                <p class="modal_preco"> {{item.preco | converterNumero}} </p>
+                <button @click.prevent="removerCurso(index)" class="modal_remover"> X </button>
+              </span>
+            </li>
+          </ul>
+          <button @click="finalizarCompra" class="modal_finalizar"> Finalizar Compra </button>
+        </div>
+        <p v-else> O carrinho está vazio </p>
+      </div>
+    </div>
+
+    <div class="alerta" :class="{ativado: alertaAtivo}">
+      <div>
+        <p> {{nomeCurso}} </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

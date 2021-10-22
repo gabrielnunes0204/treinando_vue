@@ -1,0 +1,20 @@
+[
+  {
+    "id": "html",
+    "nome": "HTML",
+    "tempo": "40 horas",
+    "preco": 199
+  },
+  {
+    "id": "css",
+    "nome": "CSS",
+    "tempo": "70 horas",
+    "preco": 299
+  },
+  {
+    "id": "js",
+    "nome": "Javascript",
+    "tempo": "100 horas",
+    "preco": 399
+  }
+]
